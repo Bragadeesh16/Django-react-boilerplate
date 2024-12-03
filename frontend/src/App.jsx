@@ -1,38 +1,26 @@
-import { useState } from 'react'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import { Navigate,BrowserRouter,Route,Routes } from 'react-router-dom'
-import Notfound from './pages/NotFound'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NotFound from './pages/NotFound';
 
-
-function logout(){
-  localStorage.clear()
-  return <Navigate to='/login'/>
-}
-
-function RegisterandLogout(){
-  localStorage.clear()
-  return < Register/>
+function Logout() {
+  localStorage.clear();
+  return <Navigate to="/login" />;
 }
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
     <BrowserRouter>
-
-    <Routes>
-      <Route path='/' element = {<Home/>}/>
-      <Route path='/login' element = {<Login/>}/>
-      <Route path='/Register' element = {<Register/>}/>
-      <Route path='*' element = {<Notfound/>}/>
-    </Routes>
-    
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-export default {App,logout}
+export default App;

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-
-function Home() {
+function Homepage() {
   const [count, setCount] = useState(0)
 
   return (
@@ -9,4 +8,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Homepage

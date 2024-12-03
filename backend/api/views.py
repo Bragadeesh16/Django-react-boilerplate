@@ -6,10 +6,11 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import status
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def Register(request):
-    if request.method == 'POST':
-        serializer = UserRegisterSerializer(data = request.data)
+    if request.method == "POST":
+        serializer = UserRegisterSerializer(data=request.data)
+        print(serializer)
         data = {}
         if serializer.is_valid():
             account = serializer.save()
@@ -29,7 +30,6 @@ def Register(request):
         return Response(data, status=status.HTTP_200_OK)
 
 
-
 @api_view(["POST"])
 def Logout(request):
     if request.method == "POST":
@@ -42,7 +42,9 @@ def Login(request):
     dicti = {}
     if request.method == "POST":
         data = TokenObtainPairSerializer(data=request.data)
+        print(data)
         if data.is_valid():
+            print("it's working")
             dicti = {
                 "access": data.validated_data["access"],
                 "refresh": data.validated_data["refresh"],
@@ -51,4 +53,6 @@ def Login(request):
 
             return Response(dicti, status=status.HTTP_200_OK)
         else:
+            print(data.errors)
+
             return Response(data.errors, status=status.HTTP_400_BAD_REQUEST)
